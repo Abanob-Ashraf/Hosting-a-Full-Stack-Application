@@ -6,8 +6,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "deploy": "npm install -f && npm run build && chmod +x bin/deploy.sh && bin/deploy.sh",
+    "clean": "rm -rf www/ || true",
+    "deploy": "npm run build && aws s3 cp --recursive ./www s3://abanob-udagram/",
+    "build": "npm install -f && npm run clean && ng build",
     "test": "ng test --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e"
