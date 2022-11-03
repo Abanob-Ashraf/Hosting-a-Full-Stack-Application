@@ -13,4 +13,4 @@ eb setenv AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION &&
 eb setenv AWS_PROFILE=$AWS_PROFILE &&
 eb setenv AWS_MEDIA_BUCKET=$AWS_MEDIA_BUCKET &&
 eb setenv JWT_SECRET=$JWT_SECRET &&
-eb setenv URL=$URL 
+eb setenv URL=$URL --profile default
