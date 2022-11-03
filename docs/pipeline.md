@@ -1,16 +1,13 @@
 ### FrontEnd Deploy Script: 
 
-    ```sh
     aws s3 cp --recursive ./www s3://abanob-udagram/
-    ```
 
 # S3 Frontend (abanob-udagram)
 
 ![S3 Frontend](./screenshots/S3/S3_Frontend.png)
 
 ### BackEnd Deploy Script:
-
-    ```sh 
+ 
     - eb init udagram-api --platform node.js --region us-east-2
 
     - npm run build
@@ -22,7 +19,6 @@
     - eb create --sample udagram-api-dev
     - eb use udagram-api-dev
     - eb deploy
-    ```
 
 # Elastic Beanstalk
 
@@ -30,7 +26,6 @@
 
 ## add environment variables: in bin/deploy.sh
     
-    ```sh
     eb setenv PORT=$PORT &&
     eb setenv DB_PORT=$DB_PORT &&
     eb setenv POSTGRES_HOST=$POSTGRES_HOST &&
@@ -44,7 +39,6 @@
     eb setenv AWS_BUCKET=$AWS_BUCKET &&
     eb setenv JWT_SECRET=$JWT_SECRET &&
     eb setenv URL=$URL
-    ```
 
 # Elastic Beanstalk ENV
 
@@ -59,10 +53,8 @@
 
 ## 1- Install Dependencies for Front & BackEnd Commands:
     
-    ```sh
    - cd udagram-api && npm install
    - cd udagram-frontend && npm install -f
-   ```
 
 # Pipeline diagram
 
@@ -75,10 +67,8 @@
     
 ## 2- Build BackEnd & FrontEnd Commands:
     
-    ```sh
    - cd udagram-api && npm build
    - cd udagram-frontend && npm build
-   ```
 
 # CircleCI Build steps
 
@@ -87,10 +77,8 @@
 
 ## 3- Deploy FrontEnd & BackEnd Commands:
    
-    ```sh
    - cd udagram-api && npm deploy
    - cd udagram-frontend && npm deploy
-   ```
 
 # CircleCI Deploy step
 
