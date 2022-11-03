@@ -1,8 +1,6 @@
 ### FrontEnd Deploy Script: 
 
-    ```sh
     aws s3 cp --recursive ./www s3://abanob-udagram/
-    ```
 
 # S3 Frontend (abanob-udagram)
 
