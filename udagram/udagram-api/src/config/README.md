@@ -9,7 +9,7 @@ You need a separate S3 Media bucket !
 `POSTGRES_PASSWORD` : Your Postgres DB username  
 `PORT` : Currently set to application port *Needs fix* 
 `DB_PORT` : Currently set to DB port *Needs fix*  
-`AWS_REGION` : Your MEDIA bucket AWS region EG.: "eu-west-3"  
+`AWS_DEFAULT_REGION` : Your MEDIA bucket AWS region EG.: "eu-west-3"  
 `AWS_PROFILE` : Set when setting up AWS CLI, by default should be set up to "default"  
 `AWS_BUCKET` : Your media bucket name EG.: "mediabucket123123"  
 `URL` : Your backend URL, can be found after creating EB Environment  

@@ -5,7 +5,7 @@ import { config } from "./config/config";
 
 export const s3 = new AWS.S3({
   signatureVersion: "v4",
-  region: config.aws_region,
+  region: config.aws_default_region,
   params: { Bucket: config.aws_media_bucket },
 });
 
