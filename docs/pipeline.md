@@ -62,7 +62,7 @@
 
 # Pipline main steps
 
-![pipline - main - steps](./screenshots/CircleCI/CircleCI_Main_steps.png)
+![pipline - main - steps](./screenshots/CircleCI/pipline_Main_steps.png)
 
     
 ## 2- Build BackEnd & FrontEnd Commands:
