@@ -1,0 +1,99 @@
+1- create user with programmatic access only and make permission: admin
+set aws access key id and secret access key from created user
+
+aws configure
+
+AWS Access Key ID [none]: *******U3X
+AWS Secret Access Key [none]: *******B8C
+Default region name [none]: us-east-2
+Default output format [none]: json
+
+
+*********** GitHub: **************
+
+create repository
+
+git init
+git add .
+git commit -m "init commit"
+git remote add origin https://github.com/Abanob-Ashraf/Hosting-a-Full-Stack-Application
+git branch -M main
+git push -u origin main
+
+*********** create and deploy elastic beanstalk (backend): **************
+
+eb init udagram-api --platform node.js --region us-east-2
+
+npm run build
+
+in ./elasticbeanstalk/config.yml add :
+
+deploy:
+  artifact: www/Archive.zip
+
+eb create --sample udagram-api-dev
+
+eb use udagram-api-dev
+
+eb deploy contact-api-dev
+
+
+add environment variables:
+
+eb setenv PORT=$PORT &&
+eb setenv DB_PORT=$DB_PORT &&
+eb setenv POSTGRES_HOST=$POSTGRES_HOST &&
+eb setenv POSTGRES_DB=$POSTGRES_DB &&
+eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME &&
+eb setenv POSTGRES_PASSWORD=$POSTGRES_PASSWORD &&
+eb setenv AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID &&
+eb setenv AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY &&
+eb setenv AWS_REGION=$AWS_REGION &&
+eb setenv AWS_PROFILE=$AWS_PROFILE &&
+eb setenv AWS_BUCKET=$AWS_BUCKET &&
+eb setenv JWT_SECRET=$JWT_SECRET &&
+eb setenv URL=$URL
+
+in front-end don't forget to add :
+
+http://udagram-api-dev.eba-e7wei2vd.us-east-2.elasticbeanstalk.com/
+
+instead of localhost:3000
+
+***********deploy S3 (frontend):**************
+
+put it in S3 bucket permissions -> Edit bucket policy
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::yonisify-udagram/*"
+            ]
+        }
+    ]
+}
+
+npm run build
+
+aws s3 cp --recursive ./www s3://abanob-udagram/
+
+
+***********connect postbird :**************
+
+postgres://username:password@database-1.crmvgdfjqunw.us-east-2.rds.amazonaws.com:5432/postgres
+
+*********** links:**************
+
+frontend: http://abanob-udagram.s3-website.us-east-2.amazonaws.com
+
+backend: http://udagram-api-dev.eba-e7wei2vd.us-east-2.elasticbeanstalk.com/
+
+
